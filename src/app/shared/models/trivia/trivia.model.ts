@@ -7,4 +7,5 @@ export interface Trivia {
   imageSrc? : string;
   imageAlt? : string;
   description : string;
+  createdAt? : Date;
 }

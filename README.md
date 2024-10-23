@@ -36,5 +36,10 @@ This is a simple challenge to test your skills in Angular development.
 - [ ] The form card should be centralized in the page.
 - [ ] `optional` The form may be reset after adding the new item.
 - [ ] `optional` The form may have error messages if required fields are not filled.
+- [ ] `optional` When submitting the form, create a default date for the trivia.
 
+`app-trivia` optional :
 
+- [ ] `optional` Change the color of the mat-card-title using a directive.
+- [ ] `optional` Add the date of the trivia to the card, right side of the title.
+- [ ] `optional` Format the date with a pipe to match E.G.: Jun 15, 2015.
