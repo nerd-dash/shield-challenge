@@ -17,11 +17,14 @@ export interface TriviaState {
     errors: Error[];
 }
 
+// Initially trivia is empty array, but as an interview question it's good.
+// When we refresh app, nothing will be presented on list component.
+// A simple solution is to change trivia initial state to read from local storage.
+// A pro solution is on the app component dispatch new action that fetches data from local storage and saves on store.
 const initialTriviaState: TriviaState = {
-    trivia: [],
+    trivia: JSON.parse(localStorage.getItem('trivia') ?? '[]') as Trivia[],
     isLoading: false,
     errors: []
-
 }
 
 export const triviaReducer = createReducer(
