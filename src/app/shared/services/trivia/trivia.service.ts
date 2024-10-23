@@ -1,32 +1,25 @@
 import {Injectable} from "@angular/core";
 import {Trivia} from "../../models";
 import {Observable, of, tap} from "rxjs";
-import {shibaTrivia} from "../../../utils";
 
 @Injectable()
 export class TriviaService {
-
-    constructor() {
-        sessionStorage.clear();
-        this.saveTriviaToSessionStorage(shibaTrivia);
-    }
-
     getTrivia(): Observable<Trivia[]> {
         return of(
-            this.getTriviaFromSessionStorage()
+            this.getTriviaFromLocalStorage()
         )
     }
 
     saveTrivia(trivia: Trivia): Observable<Trivia> {
-        this.saveTriviaToSessionStorage(trivia);
+        this.saveTriviaToLocalStorage(trivia);
         return of(trivia).pipe(tap(() => console.log('saveTrivia', trivia)));
     }
 
-    private getTriviaFromSessionStorage(): Trivia[] {
-        return JSON.parse(sessionStorage.getItem('trivia') ?? '[]') as Trivia[]
+    private getTriviaFromLocalStorage(): Trivia[] {
+        return JSON.parse(localStorage.getItem('trivia') ?? '[]') as Trivia[]
     }
 
-    private saveTriviaToSessionStorage(trivia: Trivia) {
-        sessionStorage.setItem('trivia', JSON.stringify([...this.getTriviaFromSessionStorage(), trivia]))
+    private saveTriviaToLocalStorage(trivia: Trivia) {
+        localStorage.setItem('trivia', JSON.stringify([...this.getTriviaFromLocalStorage(), trivia]))
     }
 }
